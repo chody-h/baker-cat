@@ -37,6 +37,22 @@ dl dd:after {
     }
 }
 
+dl, input[type="text"]
+{
+    font-family: 'Gloria Hallelujah', cursive;
+    /* font-family: 'Patrick Hand', cursive; */
+    color: brown;
+    font-size: medium;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px solid brown;
+}
+
 .hidden {
     display: none;
 }
