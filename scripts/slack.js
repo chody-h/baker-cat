@@ -21,7 +21,12 @@ var sendNewScore = function (newScore) {
     `;
 
     // See: https://api.slack.com/methods/chat.postMessage
-    web.chat.postMessage(channelId, message)
+    // I don't get why I need to specify the bot details manually
+    web.chat.postMessage(channelId, message, {
+        as_user: false,
+        icon_emoji: ":cat:",
+        username: "bakercat"
+    })
         .then((res) => {
             // `res` contains information about the posted message
             console.log('Message sent: ', res.ts);
