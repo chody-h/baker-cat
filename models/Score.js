@@ -1,5 +1,5 @@
-// Mew model
-// =========
+// Score model
+// ===========
 
 // Require mongoose
 var mongoose = require("mongoose");
@@ -7,8 +7,8 @@ var mongoose = require("mongoose");
 // Create a schema class using mongoose's schema method
 var Schema = mongoose.Schema;
 
-// Create the mewSchema with our schema class
-var mewSchema = new Schema({
+// Create the scoreSchema with our schema class
+var scoreSchema = new Schema({
   // localId: client-created GUID. retrieved from LocalStorage
   localId: {
     type: String,
@@ -34,15 +34,15 @@ var mewSchema = new Schema({
     type: Number,
     default: Date.now
   },
-  // type: "first" or "last"
-  type: {
-    type: String,
+  // score: server-side. calculated by diff of two dates
+  score: {
+    type: Number,
     required: true
   }
 });
 
-// Create the Mew model using the mewSchema
-var Mew = mongoose.model("Mew", mewSchema);
+// Create the Score model using the scoreSchema
+var Score = mongoose.model("Score", scoreSchema);
 
-// Export the Mew model
-module.exports = Mew;
+// Export the Score model
+module.exports = Score;

@@ -1,3 +1,4 @@
 module.exports = {
-    Mew: require("./Mew")
+    Mew: require("./Mew"),
+    Score: require("./Score")
 };
