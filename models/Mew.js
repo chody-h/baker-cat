@@ -9,28 +9,35 @@ var Schema = mongoose.Schema;
 
 // Create the mewSchema with our schema class
 var mewSchema = new Schema({
-  // localId, a string, must be entered
+  // localId: client-created GUID. retrieved from LocalStorage
   localId: {
     type: String,
-    required: true,
-    unique: { index: { unique: true } }
+    required: true
   },
-  // ip, a string, must be entered
-  ip: {
+  // sessionId: client-created date. retrieved from SessionStorage. comes in pairs
+  sessionId: {
     type: String,
     required: true
   },
-  score: {
-    type: Number,
+  // publicIp: server-side. where the request came from.
+  publicIp: {
+    type: String,
     required: true
   },
+  // name: client-designated name of the cat (who got bakercatted)
   name: {
     type: String,
     required: false
   },
+  // date: server-side. when the request was received.
   date: {
     type: String,
     default: Date.now
+  },
+  // type: "first" or "last"
+  type: {
+    type: String,
+    required: true
   }
 });
 

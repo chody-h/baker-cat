@@ -7,18 +7,22 @@ $(document).ready(function () {
 
     // local id: a unique identifier in case no one specifies a name
     localStorage.localId = localStorage.localId || uuidv4();
+    // session id: a unique identifier to match start and end together
+    sessionStorage.sessionId = Date.now();
 
     // score setup
-    var sessionId = new Date();
     var score = 0;
     var incrementScore = setInterval(function () {
         score += 0.1;
         $('#score').html(score.toFixed(1));
     }, 100);
 
+    // write initial score to database
+    apiCheckIn('first');
+
     // write final score to database
     window.onbeforeunload = function (event) {
-        console.log("now is the time to save to the database");
+        apiCheckIn('last');
     };
 
 
@@ -58,6 +62,36 @@ $(document).ready(function () {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
+        });
+    }
+
+    function apiCheckIn(type) {
+        if (type !== 'first' && type !== 'last') {
+            console.error(`Invalid type: ${type}`);
+            return;
+        }
+
+        data = JSON.stringify({
+            name: localStorage.kittyName,
+            localId: localStorage.localId,
+            sessionId: sessionStorage.sessionId
+        });
+
+        $.ajax({
+            type: 'post',
+            url: '/api/mew/' + type,
+            data: data,
+            contentType: 'application/json',
+            dataType: 'json',
+            processData: false,
+
+            success: function(data) {
+                console.log(`Successfully registered ${type} event to database.`);
+            },
+
+            error: function(data) {
+                console.log(`Failed to register ${type} event to database.`);
+            },
         });
     }
 

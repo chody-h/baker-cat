@@ -1,6 +1,6 @@
 var router = require("express").Router();
-var testRoutes = require("./test");
+var mewRoutes = require("./mew");
 
-router.use("/test", testRoutes);
+router.use("/mew", mewRoutes);
 
 module.exports = router;
