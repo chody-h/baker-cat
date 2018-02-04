@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,23 +9,21 @@
 
     <link rel="stylesheet" href="meow.css">
 </head>
+
 <body>
     <dl>
+        <dt>Kitty Name:</dt>
+        <dd id="nameContainer">
+            <!-- text -->
+            <!-- input -->
+        </dd>
+
         <dt>Score:</dt>
         <dd id="score">0</dd>
     </dl>
     <img src="bakercat.gif">
 </body>
 
-<script>
+<script src="purr.js"></script>
 
-var firstLoad = new Date();
-var score = 0;
-
-var x = setInterval(function() {
-    score += 1;
-    document.getElementById("score").innerHTML = score;
-}, 1000);
-
-</script>
 </html>
